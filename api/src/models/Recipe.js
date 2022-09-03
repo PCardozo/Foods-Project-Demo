@@ -4,9 +4,41 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('recipe', {
-    name: {
-      type: DataTypes.STRING,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
       allowNull: false,
+      unique:true,
     },
-  });
+    name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: 'Recipe',
+      unique:true,
+    },
+    summary: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: 'Recipe summary',
+    },
+    healthScore: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    steps: {
+      type: DataTypes.TEXT,
+      defaultValue: 'No steps added',
+    },
+    picture: {
+      type: DataTypes.TEXT,
+      defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6WfV7jSlBid0bag8gfj1ze2VPYqaX4PFgPw&usqp=CAU',
+    },
+  },
+  {
+    timeStamps: false,
+    createdAt:false,
+    updatedAt:false,
+  }
+  );
 };
