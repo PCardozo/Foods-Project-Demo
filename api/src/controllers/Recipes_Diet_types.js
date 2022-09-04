@@ -38,30 +38,36 @@ var testArr = [
 
 
 async function IdGetter(seqModel, nameValue){
-    const value = await seqModel.findOne({
+    const lecture = await seqModel.findOne({
             attributes:['id'],
             where:{
                 name:nameValue,
             }
-        }).dataValues.id;
-    return await value;
+        })/*.dataValues.id;*/
+    //console.log('idgetter:',value)
+    let value = lecture.dataValues.id;
+    //console.log('idgetter:',value);
+    return value;
 }
 
-async function createDataBulk(dietModel,recipeModel,dataArray){
-    console.log('log from crdatabulk ',dataArray)
+async function createDataBulk(junctionTable, dietModel,recipeModel,dataArray){
+    console.log('Writing recipes-diet-types...')
     let objArray=[];
     for (let i = 0; i < dataArray.length; i++) {
+        //console.log('databulk:',dataArray[i].name)
         let recID = await IdGetter(recipeModel, dataArray[i].name);
         for (let t = 0; t < dataArray[i].diets.length; t++) {
             let dietID = await IdGetter(dietModel, dataArray[i].diets[t]);
             objArray.push({
                 recipeId: recID,
-                dietId: dietID,
+                dietTypeId: dietID,
             })
-        }        
+        }     
     }
-    console.log(objArray);
-    return objArray;
+    //console.log('arreglo de objetos', objArray);
+    return junctionTable.bulkCreate(objArray)
+    .then(()=>{console.log('Writing complete.')})
+    .catch((e)=>{console.log('An error occurred while doing stuff',e)})
 }
 
 module.exports={

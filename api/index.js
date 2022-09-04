@@ -13,7 +13,7 @@ conn.sync({ force: true })
 .then(async ()=>{ console.log('Fetching data...');return await apiFetch(API_KEY)})
 .then((r)=>{return Promise.all([writeRecipes(r),writeDiets()])})
 .then(async ()=>{console.log('Fetching diet properties...');return await dietFetch(API_KEY)})
-.then(async (r)=>{})
+.then((r)=>{return createDataBulk(Recipes_diet_types,Diet_type,Recipe,r)})
 .then(() => {
   server.listen(3001, () => {
     console.log('server listening at 3001'); // eslint-disable-line no-console

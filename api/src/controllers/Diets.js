@@ -13,6 +13,7 @@ function writeDiets(){
         {name: "pescatarian"},
         {name: "fodmap friendly"},
         {name: "whole 30"},
+        {name: "vegetarian"},
     ];
     console.log('Writing diet types into database...')
     return Diet_type.bulkCreate(vars)
