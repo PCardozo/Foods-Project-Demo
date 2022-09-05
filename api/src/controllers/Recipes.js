@@ -7,4 +7,21 @@ function writeRecipes(arr){
     .catch((e)=>{console.log('An error occurred while writing recipes: ',e)})
 }
 
-module.exports=writeRecipes;
+async function getOneRecipe(recID){
+        console.log('Recipes Controller: get recipe query');
+        const lecture = await Recipe.findOne({
+            where:{
+                id:recID,
+            }
+        })
+        if(lecture){
+            return lecture
+        } else{
+            return 'Recipe not found';
+        } 
+}
+
+module.exports={
+    writeRecipes,
+    getOneRecipe
+};

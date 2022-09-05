@@ -1,40 +1,15 @@
-var testArr = [
-    {
-      name: 'Cauliflower, Brown Rice, and Vegetable Fried Rice',
-      diets: [
-        'vegetarian',
-        'gluten free',
-        'vegan',
-        'dairy free',
-        'lacto ovo vegetarian'
-      ]
-    },
-    {
-      name: 'Homemade Garlic and Basil French Fries',
-      diets: [ 'vegetarian', 'vegan', 'dairy free', 'lacto ovo vegetarian' ]
-    },
-    {
-      name: 'Berry Banana Breakfast Smoothie',
-      diets: [ 'vegetarian', 'lacto ovo vegetarian' ]
-    },
-    {
-      name: 'Garlicky Kale',
-      diets: [
-        'vegetarian',
-        'gluten free',
-        'vegan',
-        'dairy free',
-        'paleolithic',
-        'lacto ovo vegetarian',
-        'primal',
-        'whole 30'
-      ]
-    },
-    {
-      name: 'African Chicken Peanut Stew',
-      diets: [ 'gluten free', 'dairy free' ]
+const {Recipes_diet_types} = require('../db');
+
+async function getDietRelation(id){
+  const data = await Recipes_diet_types.findAll({
+    attributes:['dietTypeId'],
+    where:{
+      recipeId:id,
     }
-  ];
+  })
+  const value = data.map((el)=>{return el.dataValues.dietTypeId});
+  return value;
+}
 
 
 async function IdGetter(seqModel, nameValue){
@@ -43,10 +18,8 @@ async function IdGetter(seqModel, nameValue){
             where:{
                 name:nameValue,
             }
-        })/*.dataValues.id;*/
-    //console.log('idgetter:',value)
+        })
     let value = lecture.dataValues.id;
-    //console.log('idgetter:',value);
     return value;
 }
 
@@ -71,5 +44,6 @@ async function createDataBulk(junctionTable, dietModel,recipeModel,dataArray){
 }
 
 module.exports={
-    createDataBulk
+    createDataBulk,
+    getDietRelation
 }
