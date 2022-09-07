@@ -16,7 +16,7 @@ async function createDataBulk(dietModel,recipeModel,dataArray){
     let objArray=[];
     for (let i = 0; i < dataArray.length; i++) {
         //console.log('databulk:',dataArray[i].name)
-        let recID = await IdGetter(recipeModel, dataArray[i].name);
+        let recID = await IdGetter(Recipe, dataArray[i].name);
         for (let t = 0; t < dataArray[i].diets.length; t++) {
             let dietID = await IdGetter(dietModel, dataArray[i].diets[t]);
             objArray.push({
@@ -29,4 +29,15 @@ async function createDataBulk(dietModel,recipeModel,dataArray){
     return Recipes_dish_types.bulkCreate(objArray)
     .then(()=>{console.log('Writing complete.')})
     .catch((e)=>{console.log('An error occurred while doing stuff',e)})
+}
+
+async function IdGetter(seqModel, nameValue){
+    const lecture = await seqModel.findOne({
+            attributes:['id'],
+            where:{
+                name:nameValue,
+            }
+        })
+    let value = lecture.dataValues.id;
+    return value;
 }

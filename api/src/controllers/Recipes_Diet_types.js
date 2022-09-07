@@ -1,4 +1,4 @@
-const {Recipes_diet_types} = require('../db');
+const {Recipes_diet_types,Diet_type,Recipe} = require('../db');
 
 async function getDietRelation(id){
   const data = await Recipes_diet_types.findAll({
@@ -23,14 +23,14 @@ async function IdGetter(seqModel, nameValue){
     return value;
 }
 
-async function createDataBulk(junctionTable, dietModel,recipeModel,dataArray){
+async function createDataBulk(dataArray){
     console.log('Writing recipes-diet-types...')
     let objArray=[];
     for (let i = 0; i < dataArray.length; i++) {
         //console.log('databulk:',dataArray[i].name)
-        let recID = await IdGetter(recipeModel, dataArray[i].name);
+        let recID = await IdGetter(Recipe, dataArray[i].name);
         for (let t = 0; t < dataArray[i].diets.length; t++) {
-            let dietID = await IdGetter(dietModel, dataArray[i].diets[t]);
+            let dietID = await IdGetter(Diet_type, dataArray[i].diets[t]);
             objArray.push({
                 recipeId: recID,
                 dietTypeId: dietID,
@@ -38,7 +38,7 @@ async function createDataBulk(junctionTable, dietModel,recipeModel,dataArray){
         }     
     }
     //console.log('arreglo de objetos', objArray);
-    return junctionTable.bulkCreate(objArray)
+    return Recipes_diet_types.bulkCreate(objArray)
     .then(()=>{console.log('Writing complete.')})
     .catch((e)=>{console.log('An error occurred while doing stuff',e)})
 }
