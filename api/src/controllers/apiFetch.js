@@ -68,10 +68,11 @@ async function apiFetch(apiKey){
     return r2;
 };
 
-function dietObjCreator(elm){
+function propertyObjCreator(elm){
     let mod={
         name:elm.title,
         diets:[],
+        dishTypes:elm.dishTypes
     }
     elm.vegetarian ? mod.diets.push('vegetarian') : false;
     elm.glutenFree ? mod.diets.push('gluten free') : false;
@@ -83,10 +84,11 @@ function dietObjCreator(elm){
 
 };
 
-async function dietFetch(apiKey){
+async function propertyFetch(apiKey){
+    console.log('Fetching diet and Dish type properties...')
     let iGotData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=5`)
     let r = iGotData.data.results;
-    let r2 = r.map((el)=>{return dietObjCreator(el)});
+    let r2 = r.map((el)=>{return propertyObjCreator(el)});
     //console.log(r2);
     console.log('Fetch complete.');
     return r2;
@@ -96,5 +98,5 @@ async function dietFetch(apiKey){
 
 module.exports={
     apiFetch,
-    dietFetch
+    propertyFetch
 };

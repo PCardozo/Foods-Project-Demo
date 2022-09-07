@@ -23,7 +23,7 @@ async function IdGetter(seqModel, nameValue){
     return value;
 }
 
-async function createDataBulk(dataArray){
+async function writeRecipesDietTypes(dataArray){
     console.log('Writing recipes-diet-types...')
     let objArray=[];
     for (let i = 0; i < dataArray.length; i++) {
@@ -44,6 +44,6 @@ async function createDataBulk(dataArray){
 }
 
 module.exports={
-    createDataBulk,
+    writeRecipesDietTypes,
     getDietRelation
 }
