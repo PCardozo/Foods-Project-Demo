@@ -1,9 +1,9 @@
 const {Dish_type} = require('../db');
 
-/*async function getDietsForRecipe(arrId){
+async function getDishTypesForRecipe(arrId){
     let result =[];
     for (let i = 0; i < arrId.length; i++) {
-        const lecture = await Diet_type.findOne({
+        const lecture = await Dish_type.findOne({
             attributes:['name'],
             where:{
                 id:arrId[i],
@@ -15,7 +15,7 @@ const {Dish_type} = require('../db');
 }
 
 
-async function getDiets(){
+/*async function getDiets(){
     try{
         const val = await Diet_type.findAll();
         //console.log('valor de FindAll es:',val);
@@ -43,6 +43,7 @@ function writeDishTypes(){
         {name: "dip"},
         {name: "sauce"},
         {name: "spread"},
+        {name: "No dish type available"}
     ];
     console.log('Writing dish types into database...')
     return Dish_type.bulkCreate(vars)
@@ -52,4 +53,5 @@ function writeDishTypes(){
 
 module.exports={
     writeDishTypes,
+    getDishTypesForRecipe
 }

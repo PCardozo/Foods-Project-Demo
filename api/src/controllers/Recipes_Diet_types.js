@@ -1,14 +1,14 @@
 const {Recipes_diet_types,Diet_type,Recipe} = require('../db');
 
 async function getDietRelation(id){
-  const data = await Recipes_diet_types.findAll({
-    attributes:['dietTypeId'],
-    where:{
-      recipeId:id,
-    }
-  })
-  const value = data.map((el)=>{return el.dataValues.dietTypeId});
-  return value;
+    const data = await Recipes_diet_types.findAll({
+        attributes:['dietTypeId'],
+        where:{
+            recipeId:id,
+        }
+    })
+    const value = data.map((el)=>{return el.dataValues.dietTypeId});
+    return value;
 }
 
 

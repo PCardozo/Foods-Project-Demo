@@ -1,15 +1,15 @@
 const {Recipes_dish_types, Dish_type, Recipe} = require('../db');
 
-/*async function getDishTypeRelation(id){
-  const data = await Recipes_dish_types.findAll({
-    attributes:['dishTypeId'],
-    where:{
-      recipeId:id,
-    }
-  })
-  const value = data.map((el)=>{return el.dataValues.dishTypeId});
-  return value;
-}*/
+async function getDishTypeRelation(id){
+    const data = await Recipes_dish_types.findAll({
+        attributes:['dishTypeId'],
+        where:{
+            recipeId:id,
+        }
+    })
+    const value = data.map((el)=>{return el.dataValues.dishTypeId});
+    return value;
+}
 
 async function writeRecipesDishTypes(dataArray){
     console.log('Writing recipes-dish-types...');
@@ -43,5 +43,6 @@ async function IdGetter(seqModel, nameValue){
 }
 
 module.exports={
-    writeRecipesDishTypes
+    writeRecipesDishTypes,
+    getDishTypeRelation
 }
