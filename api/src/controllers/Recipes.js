@@ -9,6 +9,20 @@ function writeRecipes(arr){
     .catch((e)=>{console.log('An error occurred while writing recipes: ',e)})
 }
 
+function writeNewRecipe(rec){
+    console.log('Writing new recipe into database...')
+    const reg = {
+        name:rec.name,
+        summary:rec.summary,
+        steps:rec.steps,
+        healthScore:rec.healthScore,
+        picture:rec.picture,
+    }
+    return Recipe.create(reg)
+    .then(()=>{console.log('New recipe written into database.')})
+    .catch((e)=>{console.log('An error occurred while writing the recipes: ',e)})
+}
+
 async function getOneRecipe(recID){
         //console.log('Recipes Controller: get recipe query');
         const lecture = await Recipe.findOne({
@@ -48,6 +62,7 @@ async function getManyRecipes(str){
 }
 
 module.exports={
+    writeNewRecipe,
     writeRecipes,
     getOneRecipe,
     getManyRecipes

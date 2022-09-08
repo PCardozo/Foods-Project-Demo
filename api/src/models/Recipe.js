@@ -25,13 +25,16 @@ module.exports = (sequelize) => {
     healthScore: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+      allowNull: false,
     },
     steps: {
       type: DataTypes.TEXT,
-      defaultValue: 'No steps added',
+      allowNull: false,
+      defaultValue: 'No steps available',
     },
     picture: {
       type: DataTypes.TEXT,
+      allowNull: false,
       defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6WfV7jSlBid0bag8gfj1ze2VPYqaX4PFgPw&usqp=CAU',
     },
   },
