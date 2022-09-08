@@ -61,9 +61,6 @@ router.post('/',async (req,res)=>{
     .then(()=>{return writeRecipesDishTypes([{name:testObj.name,dishTypes:testObj.dishTypes}])})
     .then(()=>{res.send('Recipe created succesfully.');})
     .catch(()=>{res.status(400).send('There was an error processing the request');})
-    //escribir en la db la info basica- no diet types ni dish types
-    //recuperar id de receta nueva y escribir tipos de plato
-    //recuperar id de receta nueva y escribir tipos de dieta
 })
 
 module.exports = router;

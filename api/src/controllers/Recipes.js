@@ -37,6 +37,20 @@ async function getOneRecipe(recID){
         } 
 }
 
+async function getOneRecipe(recID){
+        //console.log('Recipes Controller: get recipe query');
+        const lecture = await Recipe.findOne({
+            where:{
+                id:recID,
+            }
+        })
+        if(lecture){
+            return lecture
+        } else{
+            return 'Not found';
+        } 
+}
+
 async function getManyRecipes(str){
     const searchValue = '%'+str+'%';
     const lecture = await Recipe.findAll({
