@@ -15,18 +15,6 @@ async function getDishTypesForRecipe(arrId){
 }
 
 
-/*async function getDiets(){
-    try{
-        const val = await Diet_type.findAll();
-        //console.log('valor de FindAll es:',val);
-        const result = val.map((elem)=>{return elem['dataValues']});
-        return result;
-    } catch(err) {
-        console.log('An error ocurred while Getting Diet types:',err)
-        return 'An error Occurred';
-    }
-}*/
-
 function writeDishTypes(){
     let vars = [
         {name: "lunch"},
@@ -43,7 +31,7 @@ function writeDishTypes(){
         {name: "dip"},
         {name: "sauce"},
         {name: "spread"},
-        {name: "No dish type available"}
+        {name: "No dish types available"}
     ];
     console.log('Writing dish types into database...')
     return Dish_type.bulkCreate(vars)
