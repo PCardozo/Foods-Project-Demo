@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react';
+import axios from 'axios';
 
 export default function CreateRecipePage(){
     
@@ -49,7 +50,13 @@ export default function CreateRecipePage(){
                 }
             }
             if(recProto.dishTypes.length<1)recProto.dishTypes.push("No dish types available");
-            console.log(recProto)
+            textValues.recipeName.value='';
+            textValues.healthyness.value='';
+            textValues.summary.value='';
+            textValues.stepByStep.value='';
+            //console.log(recProto)
+            axios.post('http://localhost:3001/recipes',recProto)
+            .then((r)=>{console.log(r.data)})
         }
     }
 
@@ -100,34 +107,34 @@ export default function CreateRecipePage(){
     return(
         <div>
             <form onSubmit={(e)=>{handleSubmit(e)}}>
-                    <label for="formDietTypes">Diet types:</label>
+                    <label htmlFor="formDietTypes">Diet types:</label>
                 <div id="formDietTypes" name="formDietTypes">
                     <input type="checkbox" id="glutenFree" name="gluten free"/>
-                        <label for="glutenFree">Gluten free</label>
+                        <label htmlFor="glutenFree">Gluten free</label>
                     <input type="checkbox" id="dairyFree" name="dairy free"/>
-                        <label for="dairyFree">Dairy free</label>
+                        <label htmlFor="dairyFree">Dairy free</label>
                     <input type="checkbox" id="lactoOvoVegetarian" name="lacto ovo vegetarian"/>
-                        <label for="lactoOvoVegetarian">Lacto ovo vegetarian</label>
+                        <label htmlFor="lactoOvoVegetarian">Lacto ovo vegetarian</label>
                     <input type="checkbox" id="lactoVegetarian" name="lacto vegetarian"/>
-                        <label for="lactoVegetarian">Lacto vegetarian</label>
+                        <label htmlFor="lactoVegetarian">Lacto vegetarian</label>
                     <input type="checkbox" id="vegan" name="vegan"/>
-                        <label for="vegan">Vegan</label>
+                        <label htmlFor="vegan">Vegan</label>
                     <input type="checkbox" id="paleolithic" name="paleolithic"/>
-                        <label for="paleolithic">Paleolithic</label>
+                        <label htmlFor="paleolithic">Paleolithic</label>
                     <input type="checkbox" id="primal" name="primal"/>
-                        <label for="primal">Primal</label>
+                        <label htmlFor="primal">Primal</label>
                     <input type="checkbox" id="pescatarian" name="pescatarian"/>
-                        <label for="pescatarian">Pescatarian</label>
+                        <label htmlFor="pescatarian">Pescatarian</label>
                     <input type="checkbox" id="fodmapFriendly" name="fodmap friendly"/>
-                        <label for="fodmapFriendly">FODMAP friendly</label>
+                        <label htmlFor="fodmapFriendly">FODMAP friendly</label>
                     <input type="checkbox" id="whole30" name="whole 30"/>
-                        <label for="whole30">Whole 30</label>
+                        <label htmlFor="whole30">Whole 30</label>
                     <input type="checkbox" id="vegetarian" name="vegetarian"/>
-                        <label for="vegetarian">Vegetarian</label>
+                        <label htmlFor="vegetarian">Vegetarian</label>
                     <input type="checkbox" id="ovoVegetarian" name="ovo vegetarian"/>
-                        <label for="ovoVegetarian">Ovo vegetarian</label>
+                        <label htmlFor="ovoVegetarian">Ovo vegetarian</label>
                 </div>
-                    <label for="formDishTypes">Dish types:</label>
+                    <label htmlFor="formDishTypes">Dish types:</label>
                 <div id="formDishTypes" name="formDishTypes">
                     <input type="checkbox" id="lunch" name="lunch"/>
                         <label for="lunch">Lunch</label>
@@ -159,13 +166,13 @@ export default function CreateRecipePage(){
                         <label for="spread">Spread</label>
                 </div>
                 <div id="textValues" name="textValues">
-                    <label for="recipeName">👨‍🍳Recipe Name:</label>
+                    <label htmlFor="recipeName">👨‍🍳Recipe Name:</label>
                         <input type="text" id="recipeName" name="recipeName" onChange={(e)=>{validateName(e.target.value)}}/>
                         {nameErr && <p className='errMsg'>❌Recipe name must be between 8 and 40 characters long</p>}
-                    <label for="healthyness">💪Healthyness value:</label>
+                    <label htmlFor="healthyness">💪Healthyness value:</label>
                         <input type="text" id="healthyness" name="healthyness" onChange={(e)=>{validateHealth(e.target.value)}}/>
                         {healthErr && <p className='errMsg'>❌Healthyness must be a numeric value between 0 and 100</p>}
-                    <label for="summary">📃Recipe summary:</label>
+                    <label htmlFor="summary">📃Recipe summary:</label>
                         <textarea id="summary" name="summary" rows="20" cols="33" onChange={(e)=>{validateSumm(e.target.value)}}/>
                         {summErr && <p className='errMsg'>❌Recipe summary must be between 8 and 300 characters long</p>}
                     <label for="stepByStep">👓Instructions to cook this recipe:</label>

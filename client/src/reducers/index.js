@@ -1,64 +1,71 @@
 import {
-    GET_ALL_RECIPES,
     GET_RECIPES_BY_NAME,
     GET_ONE_RECIPE,
-    CREATE_RECIPE,
     FILTER_BY_DIET_TYPE,
-    ORDER_ALPHABETICALLY_ASC,
-    ORDER_ALPHABETICALLY_DESC,
-    ORDER_BY_HEALTHYNESS_ASC,
-    ORDER_BY_HEALTHYNESS_DESC,
+    SET_FILTER_ACTIVE,
+    SET_DIET_FILTER,
+    SET_FILTER_INACTIVE,
     CLEAR_DETAIL
 } from '../actions/index';
 
 const initialState = {
-    allRecipes: [],
-    shownRecipes: [],
-    detail: [],
+    gotRecipes: [],
+    activeFilter:false,
+    filteredRecipes: [],
+    detail: {},
     diets: [],
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_ALL_RECIPES:
-            return {
-                ...state
-            };
         case GET_RECIPES_BY_NAME:
-            return {
+            if(typeof action.payload === 'string'){
+                return {...state,gotRecipes:[]}
+            } else return {
                 ...state,
-            }
+                gotRecipes:action.payload
+            }    
         case GET_ONE_RECIPE:
             return {
                 ...state,
+                detail:action.payload
             }
-        case CREATE_RECIPE:
+        case SET_FILTER_ACTIVE:
             return {
                 ...state,
+                activeFilter:true
             }
-        case FILTER_BY_DIET_TYPE:
+        case SET_FILTER_INACTIVE:
             return {
                 ...state,
+                activeFilter:false
             }
-        case ORDER_ALPHABETICALLY_ASC:
-            return {
-                ...state,
-            }
-        case ORDER_ALPHABETICALLY_DESC:
-            return {
-                ...state,
-            }
-        case ORDER_BY_HEALTHYNESS_ASC:
-            return {
-                ...state,
-            };
-        case ORDER_BY_HEALTHYNESS_DESC:
-            return {
-                ...state,
-            };
         case CLEAR_DETAIL:
             return {
                 ...state,
+                detail:[]
+            };
+        case SET_DIET_FILTER:
+            return {
+                ...state,
+                diets:action.payload
+            };
+        case FILTER_BY_DIET_TYPE:
+            let aux=[]
+            for (let i = 0; i < state.gotRecipes.length; i++) {
+                for (let j = 0; j < state.diets.length; j++) {
+                    if(state.gotRecipes[i].dietTypes.includes(state.diets[j])){
+                        aux.push(state.gotRecipes[i])
+                        i++;
+                        break;
+                    }    
+                }    
+            }
+            console.log('log from filter logic',aux)
+            console.log('log from filter logic',state)
+            return {
+                ...state,
+                filteredRecipes:aux
             };      
         default:
             return {

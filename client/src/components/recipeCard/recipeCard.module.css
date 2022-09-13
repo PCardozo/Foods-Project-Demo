@@ -1,0 +1,30 @@
+.dietTypeBox{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.dishTypeBox{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.image{
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.wholeDiv{
+    display:flex;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    max-width: 20rem;
+    max-height: 40rem;
+}

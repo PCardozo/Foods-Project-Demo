@@ -41,6 +41,7 @@ function writeDiets(){
         {name: "vegetarian"},
         {name: "ovo vegetarian"},
         {name: "lacto vegetarian"},
+        {name: "ketogenic"},
         {name: "No diet types available"},
     ];
     console.log('Writing diet types into database...')
