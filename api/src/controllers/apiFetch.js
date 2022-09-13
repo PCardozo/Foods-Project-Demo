@@ -60,7 +60,7 @@ function objCreator(elm){
 
 
 async function apiFetch(apiKey){
-    let iGotData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=50`)
+    let iGotData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`)
     let r = iGotData.data.results;
     let r2 = r.map((el)=>{return objCreator(el)});
     //console.log(r2)
@@ -86,7 +86,7 @@ function propertyObjCreator(elm){
 
 async function propertyFetch(apiKey){
     console.log('Fetching diet and Dish type properties...')
-    let iGotData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=50`)
+    let iGotData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`)
     let r = iGotData.data.results;
     let r2 = r.map((el)=>{return propertyObjCreator(el)});
     //console.log(r2);

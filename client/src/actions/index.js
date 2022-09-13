@@ -7,6 +7,10 @@ export const SET_FILTER_ACTIVE = 'SET_FILTER_ACTIVE';
 export const SET_FILTER_INACTIVE = 'SET_FILTER_INACTIVE';
 export const SET_DIET_FILTER = 'SET_DIET_FILTER';
 export const CLEAR_DETAIL = 'CLEAR_DETAIL';
+export const ORDER_ALPH_ASC = 'ORDER_ALPH_ASC';
+export const ORDER_ALPH_DESC = 'ORDER_ALPH_DESC';
+export const ORDER_HEALTH_ASC = 'ORDER_HEALTH_ASC';
+export const ORDER_HEALTH_DESC = 'ORDER_HEALTH_DESC';
 
 export function getOneRecipe(recipeId){
     return function(dispatch){

@@ -5,8 +5,40 @@ import {
     SET_FILTER_ACTIVE,
     SET_DIET_FILTER,
     SET_FILTER_INACTIVE,
-    CLEAR_DETAIL
+    CLEAR_DETAIL,
+    ORDER_ALPH_ASC,
+    ORDER_ALPH_DESC,
+    ORDER_HEALTH_ASC,
+    ORDER_HEALTH_DESC
 } from '../actions/index';
+
+function sortAlphaAsc(param){
+    let arr = param;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length-i-1; j++) {
+            if(arr[j].name>arr[j+1].name){
+                let aux = arr[j+1];
+                arr[j+1]=arr[j];
+                arr[j]=aux;
+            }
+        }    
+    }
+    return arr;
+}
+
+function sortHealthAsc(param){
+    let arr = param;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length-i-1; j++) {
+            if(arr[j].healthScore>arr[j+1].healthScore){
+                let aux = arr[j+1];
+                arr[j+1]=arr[j];
+                arr[j]=aux;
+            }
+        }    
+    }
+    return arr;
+}
 
 const initialState = {
     gotRecipes: [],
@@ -61,12 +93,78 @@ const reducer = (state = initialState, action) => {
                     }    
                 }    
             }
-            console.log('log from filter logic',aux)
-            console.log('log from filter logic',state)
             return {
                 ...state,
                 filteredRecipes:aux
-            };      
+            };
+        case ORDER_ALPH_ASC:
+            if(!state.activeFilter){
+                let aux= [...state.gotRecipes];
+                let aux2 = sortAlphaAsc(aux);
+                return{
+                    ...state,
+                    gotRecipes:aux2
+                }
+            }else{
+                let aux= [...state.filteredRecipes];
+                let aux2 = sortAlphaAsc(aux);
+                return{
+                    ...state,
+                    filteredRecipes:aux2
+                }
+            }
+        case ORDER_ALPH_DESC:
+            if(!state.activeFilter){
+                let aux= [...state.gotRecipes];
+                let aux2 = sortAlphaAsc(aux);
+                aux2=aux2.reverse();
+                return{
+                    ...state,
+                    gotRecipes:aux2
+                }
+            }else{
+                let aux= [...state.filteredRecipes];
+                let aux2 = sortAlphaAsc(aux);
+                aux2=aux2.reverse();
+                return{
+                    ...state,
+                    filteredRecipes:aux2
+                }
+            }
+        case ORDER_HEALTH_ASC:
+            if(!state.activeFilter){
+                let aux= [...state.gotRecipes];
+                let aux2 = sortHealthAsc(aux);
+                return{
+                    ...state,
+                    gotRecipes:aux2
+                }
+            }else{
+                let aux= [...state.filteredRecipes];
+                let aux2 = sortHealthAsc(aux);
+                return{
+                    ...state,
+                    filteredRecipes:aux2
+                }
+            }
+        case ORDER_HEALTH_DESC:
+            if(!state.activeFilter){
+                let aux= [...state.gotRecipes];
+                let aux2 = sortHealthAsc(aux);
+                aux2=aux2.reverse();
+                return{
+                    ...state,
+                    gotRecipes:aux2
+                }
+            }else{
+                let aux= [...state.filteredRecipes];
+                let aux2 = sortHealthAsc(aux);
+                aux2=aux2.reverse();
+                return{
+                    ...state,
+                    filteredRecipes:aux2
+                }
+            }     
         default:
             return {
                 ...state

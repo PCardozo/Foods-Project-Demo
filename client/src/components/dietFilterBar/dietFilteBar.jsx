@@ -67,6 +67,8 @@ export default function DietFilterBar(){
                 <label htmlFor="vegetarian">Vegetarian</label>
             <input type="checkbox" id="ovoVegetarian" name="ovo vegetarian"/>
                 <label htmlFor="ovoVegetarian">Ovo vegetarian</label>
+            <input type="checkbox" id="ketogenic" name="ketogenic"/>
+                <label htmlFor="ketogenic">Ketogenic</label>
             <input type="submit" value={btnTxt}></input>
         </form>
     )
