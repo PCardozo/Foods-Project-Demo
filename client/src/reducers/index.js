@@ -162,7 +162,7 @@ const reducer = (state = initialState, action) => {
                     }
             }
         case INDEX_PLUS:
-            if(state.pageIndex<state.shownRecipes.length){
+            if(state.pageIndex+1<state.shownRecipes.length){
                 return {
                 ...state,
                 pageIndex:state.pageIndex+1
