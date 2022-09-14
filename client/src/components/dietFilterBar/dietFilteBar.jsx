@@ -1,5 +1,5 @@
 import { useSelector,useDispatch } from "react-redux";
-import {SET_FILTER_ACTIVE,SET_FILTER_INACTIVE,FILTER_BY_DIET_TYPE,setDietFilter} from '../../actions/index'
+import {SET_FILTER_ACTIVE,SET_FILTER_INACTIVE,setDietFilter} from '../../actions/index'
 export default function DietFilterBar(){
     const activeFilter = useSelector((state)=>state.activeFilter);
     const dispatch = useDispatch();
@@ -22,9 +22,8 @@ export default function DietFilterBar(){
                 }
             }
             if(filterDiets.length>0){
-                console.log('log from handlefilter',filterDiets)
+                console.log('Applied filters were:',filterDiets)
                 dispatch(setDietFilter(filterDiets))
-                dispatch({type:FILTER_BY_DIET_TYPE})
                 dispatch({type:SET_FILTER_ACTIVE})
             } else{
                 alert('Must check at least one value in order to filter');
@@ -35,7 +34,6 @@ export default function DietFilterBar(){
                     element.checked=false;
                 }
             }
-            dispatch(setDietFilter([]))
             dispatch({type:SET_FILTER_INACTIVE})
         }
         

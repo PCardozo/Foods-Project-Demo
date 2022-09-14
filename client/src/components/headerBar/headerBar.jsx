@@ -9,7 +9,7 @@ export default function HeaderBar(){
         e.preventDefault();
         let string = e.target.children.searchBox.value;
         e.target.children.searchBox.value ='';
-        console.log('getting recipes');
+        console.log('getting recipes...');
         dispatch(getRecipesByName(string));
     }
 

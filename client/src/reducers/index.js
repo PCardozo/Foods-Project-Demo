@@ -1,7 +1,6 @@
 import {
     GET_RECIPES_BY_NAME,
     GET_ONE_RECIPE,
-    FILTER_BY_DIET_TYPE,
     SET_FILTER_ACTIVE,
     SET_DIET_FILTER,
     SET_FILTER_INACTIVE,
@@ -9,36 +8,49 @@ import {
     ORDER_ALPH_ASC,
     ORDER_ALPH_DESC,
     ORDER_HEALTH_ASC,
-    ORDER_HEALTH_DESC
+    ORDER_HEALTH_DESC,
+    INDEX_MINUS,
+    INDEX_PLUS,
 } from '../actions/index';
 
-function sortAlphaAsc(param){
-    let arr = param;
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length-i-1; j++) {
-            if(arr[j].name>arr[j+1].name){
-                let aux = arr[j+1];
-                arr[j+1]=arr[j];
-                arr[j]=aux;
+function sortByPropAsc(array,propName){
+    let result = array;
+    for (let i = 0; i < result.length; i++) {
+        for (let j = 0; j < result.length-i-1; j++) {
+            if(result[j][propName]>result[j+1][propName]){
+                let aux = result[j+1];
+                result[j+1]=result[j];
+                result[j]=aux;
             }
         }    
     }
-    return arr;
+    return result;
 }
 
-function sortHealthAsc(param){
-    let arr = param;
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length-i-1; j++) {
-            if(arr[j].healthScore>arr[j+1].healthScore){
-                let aux = arr[j+1];
-                arr[j+1]=arr[j];
-                arr[j]=aux;
-            }
-        }    
+function pageArray(array){
+    if(array.length<1) return array;
+    let elemsPerPage = 9;
+    let result = [];
+    for (let i = 0; i < array.length; i+=elemsPerPage) {
+        result.push(array.slice(i,i+elemsPerPage))
     }
-    return arr;
+    return result;
 }
+
+function filterRecipes(recipeArray,dietArray){
+    let aux=[]
+    for (let i = 0; i < recipeArray.length; i++) {
+        for (let j = 0; j < dietArray.length; j++) {
+            if(recipeArray[i].dietTypes.includes(dietArray[j])){
+                aux.push(recipeArray[i])
+                i++;
+                break;
+            }    
+        }    
+}
+return aux;
+}
+
 
 const initialState = {
     gotRecipes: [],
@@ -46,17 +58,22 @@ const initialState = {
     filteredRecipes: [],
     detail: {},
     diets: [],
+    shownRecipes:[],
+    pageIndex:0
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_RECIPES_BY_NAME:
             if(typeof action.payload === 'string'){
-                return {...state,gotRecipes:[]}
-            } else return {
-                ...state,
-                gotRecipes:action.payload
-            }    
+                return {...state,gotRecipes:[],shownRecipes:[]}
+            } else {
+                return {
+                    ...state,
+                    gotRecipes:action.payload,
+                    shownRecipes:pageArray(action.payload)
+                }
+            }  
         case GET_ONE_RECIPE:
             return {
                 ...state,
@@ -65,12 +82,15 @@ const reducer = (state = initialState, action) => {
         case SET_FILTER_ACTIVE:
             return {
                 ...state,
-                activeFilter:true
+                activeFilter:true,
+                shownRecipes:pageArray(filterRecipes(state.gotRecipes,state.diets))
             }
         case SET_FILTER_INACTIVE:
             return {
                 ...state,
-                activeFilter:false
+                diets:[],
+                activeFilter:false,
+                shownRecipes:pageArray(state.gotRecipes)
             }
         case CLEAR_DETAIL:
             return {
@@ -82,89 +102,76 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 diets:action.payload
             };
-        case FILTER_BY_DIET_TYPE:
-            let aux=[]
-            for (let i = 0; i < state.gotRecipes.length; i++) {
-                for (let j = 0; j < state.diets.length; j++) {
-                    if(state.gotRecipes[i].dietTypes.includes(state.diets[j])){
-                        aux.push(state.gotRecipes[i])
-                        i++;
-                        break;
-                    }    
-                }    
-            }
-            return {
-                ...state,
-                filteredRecipes:aux
-            };
         case ORDER_ALPH_ASC:
             if(!state.activeFilter){
-                let aux= [...state.gotRecipes];
-                let aux2 = sortAlphaAsc(aux);
                 return{
                     ...state,
-                    gotRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'name'))
                 }
             }else{
-                let aux= [...state.filteredRecipes];
-                let aux2 = sortAlphaAsc(aux);
                 return{
                     ...state,
-                    filteredRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'name'))
                 }
             }
         case ORDER_ALPH_DESC:
             if(!state.activeFilter){
-                let aux= [...state.gotRecipes];
-                let aux2 = sortAlphaAsc(aux);
-                aux2=aux2.reverse();
                 return{
                     ...state,
-                    gotRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'name').reverse())
                 }
             }else{
-                let aux= [...state.filteredRecipes];
-                let aux2 = sortAlphaAsc(aux);
-                aux2=aux2.reverse();
                 return{
                     ...state,
-                    filteredRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'name').reverse())
                 }
             }
         case ORDER_HEALTH_ASC:
             if(!state.activeFilter){
-                let aux= [...state.gotRecipes];
-                let aux2 = sortHealthAsc(aux);
                 return{
                     ...state,
-                    gotRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'healthScore'))
                 }
             }else{
-                let aux= [...state.filteredRecipes];
-                let aux2 = sortHealthAsc(aux);
                 return{
                     ...state,
-                    filteredRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'healthScore'))
                 }
             }
         case ORDER_HEALTH_DESC:
             if(!state.activeFilter){
-                let aux= [...state.gotRecipes];
-                let aux2 = sortHealthAsc(aux);
-                aux2=aux2.reverse();
                 return{
                     ...state,
-                    gotRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'healthScore').reverse())
                 }
             }else{
-                let aux= [...state.filteredRecipes];
-                let aux2 = sortHealthAsc(aux);
-                aux2=aux2.reverse();
                 return{
                     ...state,
-                    filteredRecipes:aux2
+                    shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'healthScore').reverse())
                 }
-            }     
+            }
+        case INDEX_MINUS:
+            if(state.pageIndex>0){
+                return {
+                ...state,
+                pageIndex:state.pageIndex-1
+                }
+            }else{
+                return {
+                    ...state,
+                    }
+            }
+        case INDEX_PLUS:
+            if(state.pageIndex<state.shownRecipes.length){
+                return {
+                ...state,
+                pageIndex:state.pageIndex+1
+                }
+            }else{
+                return {
+                    ...state,
+                    }
+            }  
         default:
             return {
                 ...state
