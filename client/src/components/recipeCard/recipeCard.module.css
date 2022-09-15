@@ -1,20 +1,57 @@
+.link{
+    text-decoration: none;
+    color: black;
+    margin: 2rem;
+}
+
+.name{
+    color: black;
+}
+
+.image{
+    max-width:12rem;
+    max-height: 12rem;
+}
+
 .dietTypeBox{
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+.dietTag{
+    color: black;
+    background-color: #a39f22;
+    padding: 0.4rem;
+    margin: auto;
+    border-radius:4rem;
 }
 
 .dishTypeBox{
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+    color: black;
 }
 
-.image{
-    max-width: 10rem;
-    max-height: 10rem;
+.dishTag{
+    color: black;
+    background-color: #35827e;
+    padding: 0.4rem;
+    margin: auto;
+    border-radius:4rem;
+}
+
+.link:hover .wholeDiv {
+    background-color: #9ca8b5;
+}
+
+
+
+.link:hover .wholeDiv .dietTypeBox{
+    color: black;
 }
 
 .wholeDiv{
@@ -27,4 +64,6 @@
     align-items: center;
     max-width: 20rem;
     max-height: 40rem;
+    background-color: #756382;
+    border-radius: 30px;
 }

@@ -14,7 +14,6 @@ export default function RecipeDetail(){
 
     return(
         <div>
-            {Object.keys(detail).length<1 && <p>Loading detail...</p>}
             {Object.keys(detail).length>0 && 
             <div>
                 <h3>{detail.name}</h3>

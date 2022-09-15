@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn:hover{
+    color: #b8b330;
+    cursor: pointer;
+}
+
+.pageInd{
+    background-color: #9ca8b5;
+    font-weight: 700;
+}

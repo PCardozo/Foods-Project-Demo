@@ -22,11 +22,11 @@ export default function HeaderBar(){
             <OrderBar/>
             <div>
                 <form className={styles.srchSctn} onSubmit={(e)=>{handleSearch(e)}}>
-                    <label htmlFor='searchBox'>Search for a Recipe</label>
+                    <label className={styles.title} htmlFor='searchBox'>Search for a Recipe</label>
                     <input type="text" name="searchBox" id="searchBox" placeholder='Search a recipe...'/>
-                    <input id='srchBtn' type='submit' value='Search 🔍'/>
-                    <label htmlFor='srchBtn'>- Or -</label>
-                    <button><Link to='/create'>Create a new recipe</Link></button>
+                    <input className={styles.btn} id='srchBtn' type='submit' value='Search 🔍'/>
+                    <label htmlFor='createBtn'>- Or -</label>
+                    <Link to='/create' id='createBtn' className={styles.link}><button type='button'className={styles.btn}>Create a new recipe 📃</button></Link>
                 </form>
             </div>
         </div>

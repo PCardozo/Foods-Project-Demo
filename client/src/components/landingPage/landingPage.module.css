@@ -34,3 +34,13 @@
     cursor: pointer;
     transition: 400ms;
 }
+
+.link{
+    text-decoration: none;
+    color: white;
+}
+
+.homeButton:hover .link{
+    color: black;
+    transition: 400ms;
+}

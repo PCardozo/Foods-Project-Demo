@@ -55,7 +55,6 @@ return aux;
 const initialState = {
     gotRecipes: [],
     activeFilter:false,
-    filteredRecipes: [],
     detail: {},
     diets: [],
     shownRecipes:[],
@@ -82,12 +81,14 @@ const reducer = (state = initialState, action) => {
         case SET_FILTER_ACTIVE:
             return {
                 ...state,
+                pageIndex:0,
                 activeFilter:true,
                 shownRecipes:pageArray(filterRecipes(state.gotRecipes,state.diets))
             }
         case SET_FILTER_INACTIVE:
             return {
                 ...state,
+                pageIndex:0,
                 diets:[],
                 activeFilter:false,
                 shownRecipes:pageArray(state.gotRecipes)

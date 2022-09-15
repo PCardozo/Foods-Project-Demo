@@ -7,10 +7,10 @@ export default function OrderBar(){
 
     return (
             <div className={styles.orderSctn}>
-                <input type='button' className={styles.btn} value='Order Alphabetically DESC' onClick={()=>{dispatch({type:ORDER_ALPH_DESC})}}/>
-                <input type='button' className={styles.btn} value='Order Alphabetically ASC' onClick={()=>{dispatch({type:ORDER_ALPH_ASC})}}/>
-                <input type='button' className={styles.btn} value='Order by Healthyness DESC' onClick={()=>{dispatch({type:ORDER_HEALTH_DESC})}}/>
-                <input type='button' className={styles.btn} value='Order by Healthyness ASC' onClick={()=>{dispatch({type:ORDER_HEALTH_ASC})}}/>
+                <input type='button' className={styles.btn} value='Order Alphabetically 🔽' onClick={()=>{dispatch({type:ORDER_ALPH_DESC})}}/>
+                <input type='button' className={styles.btn} value='Order Alphabetically 🔼' onClick={()=>{dispatch({type:ORDER_ALPH_ASC})}}/>
+                <input type='button' className={styles.btn} value='Order by Healthyness 🔽' onClick={()=>{dispatch({type:ORDER_HEALTH_DESC})}}/>
+                <input type='button' className={styles.btn} value='Order by Healthyness 🔼' onClick={()=>{dispatch({type:ORDER_HEALTH_ASC})}}/>
             </div>
     )
 }

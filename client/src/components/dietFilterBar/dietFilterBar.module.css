@@ -1,8 +1,36 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.title{
+    margin: 0px;
+}
+
 .box{
     margin-top: 40rem;
 }
 
+.chk{
+    margin-right: 0rem;
+}
+
+.tag{
+    margin-right: 0.5rem;
+}
+
 .tag:hover{
     color:#ffda43;
+    cursor: pointer;
+}
+
+.btn{
+    width: 30%;
+}
+
+.btn:hover{
+    color: #b8b330;
     cursor: pointer;
 }

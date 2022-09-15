@@ -3,10 +3,31 @@
     display: flex;
     flex-direction: row;
     text-align: center;
+    justify-content: space-evenly;
 }
 
 .srchSctn{
     display: flex;
     flex-direction: column;
+}
+
+.title{
+    font-weight: 700;
+}
+
+.link{
+    text-decoration: none;
+    color: black; 
+}
+
+.btn{
+    display: block;
+    width: 100%;
+
+}
+
+.btn:hover{
+    color: #b8b330;
+    cursor: pointer;
 }
 

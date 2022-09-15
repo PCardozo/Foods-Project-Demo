@@ -6,7 +6,7 @@ export default function LandingPage(){
     return(
         <div className={styles.landing}>
             <img className={styles.logo} src={pic} alt='welcoming logo'/>
-            <button className={styles.homeButton}><Link to='/home'>HOME</Link></button>
+            <button className={styles.homeButton}><Link to='/home' className={styles.link}>HOME</Link></button>
         </div>
     )
 }

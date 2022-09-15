@@ -8,7 +8,7 @@ export default function DietFilterBar(){
     
     let btnTxt="";
     if(!activeFilter){
-        btnTxt="✔Apply"
+        btnTxt="✅Apply"
     } else{
         btnTxt="❌Remove"
     }
@@ -42,11 +42,12 @@ export default function DietFilterBar(){
     }
 
     return(
-        <div>
-        <form onSubmit={(e)=>{handleFilter(e)}}>
+        <div className={styles.container}>
+        <h4 className={styles.title}>Filters:</h4>
+        <form  onSubmit={(e)=>{handleFilter(e)}}>
             <input  type="checkbox" id="glutenFree" name="gluten free"/>
                 <label className={styles.tag} htmlFor="glutenFree">Gluten free</label>
-            <input type="checkbox" id="dairyFree" name="dairy free"/>
+            <input className={styles.chk} type="checkbox" id="dairyFree" name="dairy free"/>
                 <label className={styles.tag} htmlFor="dairyFree">Dairy free</label>
             <input type="checkbox" id="lactoOvoVegetarian" name="lacto ovo vegetarian"/>
                 <label className={styles.tag} htmlFor="lactoOvoVegetarian">Lacto ovo vegetarian</label>
@@ -58,10 +59,9 @@ export default function DietFilterBar(){
                 <label className={styles.tag} htmlFor="paleolithic">Paleolithic</label>
             <input type="checkbox" id="primal" name="primal"/>
                 <label className={styles.tag} htmlFor="primal">Primal</label>
+                <br></br>
             <input type="checkbox" id="pescatarian" name="pescatarian"/>
                 <label className={styles.tag} htmlFor="pescatarian">Pescatarian</label>
-            <input type="checkbox" id="fodmapFriendly" name="fodmap friendly"/>
-                <label className={styles.tag} htmlFor="fodmapFriendly">FODMAP friendly</label>
             <input type="checkbox" id="whole30" name="whole 30"/>
                 <label className={styles.tag} htmlFor="whole30">Whole 30</label>
             <input type="checkbox" id="vegetarian" name="vegetarian"/>
@@ -70,8 +70,10 @@ export default function DietFilterBar(){
                 <label className={styles.tag} htmlFor="ovoVegetarian">Ovo vegetarian</label>
             <input type="checkbox" id="ketogenic" name="ketogenic"/>
                 <label className={styles.tag} htmlFor="ketogenic">Ketogenic</label>
+            <input type="checkbox" id="fodmapFriendly" name="fodmap friendly"/>
+                <label className={styles.tag} htmlFor="fodmapFriendly">FODMAP</label>
             <br></br>
-            <input type="submit" value={btnTxt}></input>
+            <input type="submit" value={btnTxt} className={styles.btn}></input>
         </form>
         </div>
     )
