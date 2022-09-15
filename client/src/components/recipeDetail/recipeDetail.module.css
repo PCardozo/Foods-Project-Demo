@@ -1,0 +1,80 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+.title{
+    display: block;
+    margin:auto;
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color:#b8b330;
+    max-width: 20rem;
+    border-radius: 2rem;
+}
+
+.img{
+    display: block;
+    margin: auto;
+    max-height: 20rem;
+    max-width: 20rem;
+}
+
+.hScore{
+    padding: 1rem;
+    display: block;
+    margin:auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color:#b8b330;
+    max-width: 10rem;
+    border-radius: 2rem;
+}
+
+.dietSctn{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-width: 60rem;
+    max-height: 40rem;
+    border-radius: 2rem;
+    color: black;
+    background-color:#b8b330;
+    display: block;
+    margin: auto;
+}
+
+.dietTypeTitle{
+    margin: 1rem;
+}
+
+.dietsContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.dietTag{
+    margin: 2rem;
+    background-color: #35827e;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.dishSctn{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-width: 60rem;
+    max-height: 40rem;
+    border-radius: 2rem;
+    color: black;
+    background-color:#b8b330;
+    display: block;
+    margin: auto;
+}
+
+.dishTypeTitle{
+    margin: 1rem;
+}
