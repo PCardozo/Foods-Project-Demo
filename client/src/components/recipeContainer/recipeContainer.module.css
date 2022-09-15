@@ -2,3 +2,14 @@
     display: flex;
     flex-direction: row;
 }
+
+.noResults{
+    display: block;
+    margin: auto;
+    margin-top: 2rem;
+    padding: 0.5rem;
+    color: #756382;
+    font-size: 2rem;
+    background-color: #f9bb9d;
+    border-radius: 10px;
+}

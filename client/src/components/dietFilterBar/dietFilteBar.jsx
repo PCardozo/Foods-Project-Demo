@@ -1,14 +1,16 @@
 import { useSelector,useDispatch } from "react-redux";
 import {SET_FILTER_ACTIVE,SET_FILTER_INACTIVE,setDietFilter} from '../../actions/index'
+import styles from './dietFilterBar.module.css';
+
 export default function DietFilterBar(){
     const activeFilter = useSelector((state)=>state.activeFilter);
     const dispatch = useDispatch();
     
     let btnTxt="";
     if(!activeFilter){
-        btnTxt="✔Apply Filters"
+        btnTxt="✔Apply"
     } else{
-        btnTxt="❌Remove Filters"
+        btnTxt="❌Remove"
     }
 
     function handleFilter(e){
@@ -40,34 +42,37 @@ export default function DietFilterBar(){
     }
 
     return(
+        <div>
         <form onSubmit={(e)=>{handleFilter(e)}}>
-            <input type="checkbox" id="glutenFree" name="gluten free"/>
-                <label htmlFor="glutenFree">Gluten free</label>
+            <input  type="checkbox" id="glutenFree" name="gluten free"/>
+                <label className={styles.tag} htmlFor="glutenFree">Gluten free</label>
             <input type="checkbox" id="dairyFree" name="dairy free"/>
-                <label htmlFor="dairyFree">Dairy free</label>
+                <label className={styles.tag} htmlFor="dairyFree">Dairy free</label>
             <input type="checkbox" id="lactoOvoVegetarian" name="lacto ovo vegetarian"/>
-                <label htmlFor="lactoOvoVegetarian">Lacto ovo vegetarian</label>
+                <label className={styles.tag} htmlFor="lactoOvoVegetarian">Lacto ovo vegetarian</label>
             <input type="checkbox" id="lactoVegetarian" name="lacto vegetarian"/>
-                <label htmlFor="lactoVegetarian">Lacto vegetarian</label>
+                <label className={styles.tag} htmlFor="lactoVegetarian">Lacto vegetarian</label>
             <input type="checkbox" id="vegan" name="vegan"/>
-                <label htmlFor="vegan">Vegan</label>
+                <label className={styles.tag} htmlFor="vegan">Vegan</label>
             <input type="checkbox" id="paleolithic" name="paleolithic"/>
-                <label htmlFor="paleolithic">Paleolithic</label>
+                <label className={styles.tag} htmlFor="paleolithic">Paleolithic</label>
             <input type="checkbox" id="primal" name="primal"/>
-                <label htmlFor="primal">Primal</label>
+                <label className={styles.tag} htmlFor="primal">Primal</label>
             <input type="checkbox" id="pescatarian" name="pescatarian"/>
-                <label htmlFor="pescatarian">Pescatarian</label>
+                <label className={styles.tag} htmlFor="pescatarian">Pescatarian</label>
             <input type="checkbox" id="fodmapFriendly" name="fodmap friendly"/>
-                <label htmlFor="fodmapFriendly">FODMAP friendly</label>
+                <label className={styles.tag} htmlFor="fodmapFriendly">FODMAP friendly</label>
             <input type="checkbox" id="whole30" name="whole 30"/>
-                <label htmlFor="whole30">Whole 30</label>
+                <label className={styles.tag} htmlFor="whole30">Whole 30</label>
             <input type="checkbox" id="vegetarian" name="vegetarian"/>
-                <label htmlFor="vegetarian">Vegetarian</label>
+                <label className={styles.tag} htmlFor="vegetarian">Vegetarian</label>
             <input type="checkbox" id="ovoVegetarian" name="ovo vegetarian"/>
-                <label htmlFor="ovoVegetarian">Ovo vegetarian</label>
+                <label className={styles.tag} htmlFor="ovoVegetarian">Ovo vegetarian</label>
             <input type="checkbox" id="ketogenic" name="ketogenic"/>
-                <label htmlFor="ketogenic">Ketogenic</label>
+                <label className={styles.tag} htmlFor="ketogenic">Ketogenic</label>
+            <br></br>
             <input type="submit" value={btnTxt}></input>
         </form>
+        </div>
     )
 }

@@ -1,0 +1,8 @@
+.box{
+    margin-top: 40rem;
+}
+
+.tag:hover{
+    color:#ffda43;
+    cursor: pointer;
+}

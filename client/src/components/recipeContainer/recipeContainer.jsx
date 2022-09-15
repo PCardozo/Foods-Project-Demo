@@ -10,7 +10,7 @@ export default function RecipeContainer(){
 
     return(
         <div className={styles.container}>
-            {shownRecipes.length<1 && <p id='noResults'>No results found.</p>}
+            {shownRecipes.length<1 && <p className={styles.noResults}>No results found.</p>}
             {shownRecipes.length>0 && shownRecipes[pageIndex].map((element)=>{
                 return <RecipeCard
                 id='recipeCard'

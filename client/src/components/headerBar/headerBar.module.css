@@ -1,0 +1,12 @@
+.across{
+    background-color: #9ca8b5;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.srchSctn{
+    display: flex;
+    flex-direction: column;
+}
+
