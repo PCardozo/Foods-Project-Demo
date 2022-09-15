@@ -1,5 +1,7 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios';
+import styles from './createRecipePage.module.css';
+import tagStyles from '../dietFilterBar/dietFilterBar.module.css';
 
 export default function CreateRecipePage(){
     
@@ -105,82 +107,87 @@ export default function CreateRecipePage(){
     
     
     return(
-        <div>
-            <form onSubmit={(e)=>{handleSubmit(e)}}>
-                    <label htmlFor="formDietTypes">Diet types:</label>
-                <div id="formDietTypes" name="formDietTypes">
-                    <input type="checkbox" id="glutenFree" name="gluten free"/>
-                        <label htmlFor="glutenFree">Gluten free</label>
+        <div className={styles.container}>
+            <h2 className={styles.title}>Create a Recipe:</h2>
+            <form className={styles.form} onSubmit={(e)=>{handleSubmit(e)}}>
+                <h2 className={styles.dietsTitle}>Diet types:</h2>
+                <div className={styles.dietsContainer} id="formDietTypes" name="formDietTypes">
+                    <input  type="checkbox" id="glutenFree" name="gluten free"/>
+                    <label className={tagStyles.tag} htmlFor="glutenFree">Gluten free</label>
                     <input type="checkbox" id="dairyFree" name="dairy free"/>
-                        <label htmlFor="dairyFree">Dairy free</label>
+                    <label className={tagStyles.tag} htmlFor="dairyFree">Dairy free</label>
                     <input type="checkbox" id="lactoOvoVegetarian" name="lacto ovo vegetarian"/>
-                        <label htmlFor="lactoOvoVegetarian">Lacto ovo vegetarian</label>
+                    <label className={tagStyles.tag} htmlFor="lactoOvoVegetarian">Lacto ovo vegetarian</label>
                     <input type="checkbox" id="lactoVegetarian" name="lacto vegetarian"/>
-                        <label htmlFor="lactoVegetarian">Lacto vegetarian</label>
+                    <label className={tagStyles.tag} htmlFor="lactoVegetarian">Lacto vegetarian</label>
                     <input type="checkbox" id="vegan" name="vegan"/>
-                        <label htmlFor="vegan">Vegan</label>
+                    <label className={tagStyles.tag} htmlFor="vegan">Vegan</label>
                     <input type="checkbox" id="paleolithic" name="paleolithic"/>
-                        <label htmlFor="paleolithic">Paleolithic</label>
+                    <label className={tagStyles.tag} htmlFor="paleolithic">Paleolithic</label>
                     <input type="checkbox" id="primal" name="primal"/>
-                        <label htmlFor="primal">Primal</label>
+                    <label className={tagStyles.tag} htmlFor="primal">Primal</label>
                     <input type="checkbox" id="pescatarian" name="pescatarian"/>
-                        <label htmlFor="pescatarian">Pescatarian</label>
+                    <label className={tagStyles.tag} htmlFor="pescatarian">Pescatarian</label>
                     <input type="checkbox" id="fodmapFriendly" name="fodmap friendly"/>
-                        <label htmlFor="fodmapFriendly">FODMAP friendly</label>
+                    <label className={tagStyles.tag} htmlFor="fodmapFriendly">FODMAP</label>
                     <input type="checkbox" id="whole30" name="whole 30"/>
-                        <label htmlFor="whole30">Whole 30</label>
+                    <label className={tagStyles.tag} htmlFor="whole30">Whole 30</label>
                     <input type="checkbox" id="vegetarian" name="vegetarian"/>
-                        <label htmlFor="vegetarian">Vegetarian</label>
+                    <label className={tagStyles.tag} htmlFor="vegetarian">Vegetarian</label>
                     <input type="checkbox" id="ovoVegetarian" name="ovo vegetarian"/>
-                        <label htmlFor="ovoVegetarian">Ovo vegetarian</label>
+                    <label className={tagStyles.tag} htmlFor="ovoVegetarian">Ovo vegetarian</label>
                 </div>
-                    <label htmlFor="formDishTypes">Dish types:</label>
-                <div id="formDishTypes" name="formDishTypes">
+                <h2 className={styles.dietsTitle}>Dish types:</h2>
+                <div className={styles.dietsContainer} id="formDishTypes" name="formDishTypes">
                     <input type="checkbox" id="lunch" name="lunch"/>
-                        <label for="lunch">Lunch</label>
+                    <label className={tagStyles.tag} htmlFor="lunch">Lunch</label>
                     <input type="checkbox" id="MainCourse" name="main course"/>
-                        <label for="MainCourse">MainCourse</label>
+                    <label className={tagStyles.tag} htmlFor="MainCourse">MainCourse</label>
                     <input type="checkbox" id="mainDish" name="main dish"/>
-                        <label for="mainDish">Main dish</label>
+                    <label className={tagStyles.tag} htmlFor="mainDish">Main dish</label>
                     <input type="checkbox" id="dinner" name="dinner"/>
-                        <label for="dinner">Dinner</label>
+                    <label className={tagStyles.tag} htmlFor="dinner">Dinner</label>
                     <input type="checkbox" id="sideDish" name="side dish"/>
-                        <label for="sideDish">Side dish</label>
+                    <label className={tagStyles.tag} htmlFor="sideDish">Side dish</label>
                     <input type="checkbox" id="morningMeal" name="morning meal"/>
-                        <label for="morningMeal">Morning Meal</label>
+                    <label className={tagStyles.tag} htmlFor="morningMeal">Morning Meal</label>
                     <input type="checkbox" id="brunch" name="brunch"/>
-                        <label for="brunch">Brunch</label>
+                    <label className={tagStyles.tag} htmlFor="brunch">Brunch</label>
                     <input type="checkbox" id="breakfast" name="breakfast"/>
-                        <label for="breakfast">Breakfast</label>
+                    <label className={tagStyles.tag} htmlFor="breakfast">Breakfast</label>
                     <input type="checkbox" id="soup" name="soup"/>
-                        <label for="soup">Soup</label>
+                    <label className={tagStyles.tag} htmlFor="soup">Soup</label>
                     <input type="checkbox" id="salad" name="salad"/>
-                        <label for="salad">Salad</label>
+                    <label className={tagStyles.tag} htmlFor="salad">Salad</label>
                     <input type="checkbox" id="condiment" name="condiment"/>
-                        <label for="condiment">Condiment</label>
+                    <label className={tagStyles.tag} htmlFor="condiment">Condiment</label>
                     <input type="checkbox" id="dip" name="dip"/>
-                        <label for="dip">Dip</label>
+                    <label className={tagStyles.tag} htmlFor="dip">Dip</label>
                     <input type="checkbox" id="sauce" name="sauce"/>
-                        <label for="sauce">Sauce</label>
+                    <label className={tagStyles.tag} htmlFor="sauce">Sauce</label>
                     <input type="checkbox" id="spread" name="spread"/>
-                        <label for="spread">Spread</label>
+                    <label className={tagStyles.tag} htmlFor="spread">Spread</label>
                 </div>
-                <div id="textValues" name="textValues">
-                    <label htmlFor="recipeName">👨‍🍳Recipe Name:</label>
-                        <input type="text" id="recipeName" name="recipeName" onChange={(e)=>{validateName(e.target.value)}}/>
-                        {nameErr && <p className='errMsg'>❌Recipe name must be between 8 and 40 characters long</p>}
-                    <label htmlFor="healthyness">💪Healthyness value:</label>
-                        <input type="text" id="healthyness" name="healthyness" onChange={(e)=>{validateHealth(e.target.value)}}/>
-                        {healthErr && <p className='errMsg'>❌Healthyness must be a numeric value between 0 and 100</p>}
-                    <label htmlFor="summary">📃Recipe summary:</label>
-                        <textarea id="summary" name="summary" rows="20" cols="33" onChange={(e)=>{validateSumm(e.target.value)}}/>
-                        {summErr && <p className='errMsg'>❌Recipe summary must be between 8 and 300 characters long</p>}
-                    <label for="stepByStep">👓Instructions to cook this recipe:</label>
-                        <textarea id="stepByStep" name="stepByStep" rows="20" cols="33" onChange={(e)=>{validateSteps(e.target.value)}}/>
-                        {stepsErr && <p className='errMsg'>❌Recipe instructions must be between 8 and 300 characters long</p>}
-                    <input type="submit" value="✔Submit" disabled={errors}></input>
+                <div className={styles.txtValContainer} id="textValues" name="textValues">
+                    <h3 className={styles.sctnTitle}>👨‍🍳Recipe Name:</h3>
+                    <input className={styles.name} type="text" id="recipeName" name="recipeName" onChange={(e)=>{validateName(e.target.value)}}/>
+                    <br></br>
+                    <h3 className={styles.sctnTitle}>💪Healthyness value:</h3>
+                    <input className={styles.score} type="text" id="healthyness" name="healthyness" onChange={(e)=>{validateHealth(e.target.value)}}/>
+                    <br></br>
+                    <h3 className={styles.sctnTitle}>📃Recipe summary:</h3>
+                    <textarea className={styles.txtBox} id="summary" name="summary" rows="20" cols="33" onChange={(e)=>{validateSumm(e.target.value)}}/>
+                    <br></br>
+                    <h3 className={styles.sctnTitle}>👓Instructions to cook this recipe:</h3>
+                    <textarea className={styles.txtBox} id="stepByStep" name="stepByStep" rows="20" cols="33" onChange={(e)=>{validateSteps(e.target.value)}}/>
+                    <input className={styles.submit} type="submit" value="✔Submit" disabled={errors}></input>
+                    {nameErr && <p className={styles.errMsg}>❌Recipe name must be between 8 and 40 characters long</p>}
+                    {healthErr && <p className={styles.errMsg}>❌Healthyness must be a numeric value between 0 and 100</p>}
+                    {summErr && <p className={styles.errMsg}>❌Recipe summary must be between 8 and 300 characters long</p>}
+                    {stepsErr && <p className={styles.errMsg}>❌Recipe instructions must be between 8 and 300 characters long</p>}
                 </div>
             </form>
+            <br></br>
         </div>
     )
 }

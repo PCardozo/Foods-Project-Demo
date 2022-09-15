@@ -11,6 +11,7 @@ export default function RecipeDetail(){
     
     useEffect(()=>{
         dispatch(getOneRecipe(id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return(
