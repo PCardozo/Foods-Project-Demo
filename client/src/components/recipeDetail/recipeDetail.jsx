@@ -3,9 +3,11 @@ import { useDispatch,useSelector } from "react-redux";
 import { getOneRecipe } from "../../actions";
 import {useParams} from 'react-router-dom';
 import styles from './recipeDetail.module.css';
+import stylesB from '../recipeContainer/recipeContainer.module.css';
 
 export default function RecipeDetail(){
     const detail = useSelector(state=>state.detail);
+    const loading = useSelector(state=>state.loading);
     const dispatch = useDispatch();
     let {id} = useParams();
     
@@ -16,7 +18,8 @@ export default function RecipeDetail(){
 
     return(
         <div >
-            {Object.keys(detail).length>0 && 
+            {loading && <p className={stylesB.noResults}>Loading...</p>}
+            {!loading &&Object.keys(detail).length>0 && 
             <div className={styles.container}>
                 <h3 className={styles.title} >{detail.name}</h3>
                 <img className={styles.img} src={detail.picture} alt='Food'/>

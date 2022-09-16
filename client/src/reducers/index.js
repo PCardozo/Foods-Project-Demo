@@ -11,7 +11,10 @@ import {
     ORDER_HEALTH_DESC,
     INDEX_MINUS,
     INDEX_PLUS,
+    SET_LOADING,
+    CLEAR_RECIPES
 } from '../actions/index';
+
 
 function sortByPropAsc(array,propName){
     let result = array;
@@ -58,7 +61,8 @@ const initialState = {
     detail: {},
     diets: [],
     shownRecipes:[],
-    pageIndex:0
+    pageIndex:0,
+    loading:false
 };
 
 const reducer = (state = initialState, action) => {
@@ -107,11 +111,13 @@ const reducer = (state = initialState, action) => {
             if(!state.activeFilter){
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'name'))
                 }
             }else{
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'name'))
                 }
             }
@@ -119,11 +125,13 @@ const reducer = (state = initialState, action) => {
             if(!state.activeFilter){
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'name').reverse())
                 }
             }else{
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'name').reverse())
                 }
             }
@@ -131,11 +139,13 @@ const reducer = (state = initialState, action) => {
             if(!state.activeFilter){
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'healthScore'))
                 }
             }else{
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'healthScore'))
                 }
             }
@@ -143,11 +153,13 @@ const reducer = (state = initialState, action) => {
             if(!state.activeFilter){
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc([...state.gotRecipes],'healthScore').reverse())
                 }
             }else{
                 return{
                     ...state,
+                    pageIndex:0,
                     shownRecipes:pageArray(sortByPropAsc(filterRecipes(state.gotRecipes,state.diets),'healthScore').reverse())
                 }
             }
@@ -172,6 +184,17 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     }
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading:!state.loading
+            }
+        case CLEAR_RECIPES:
+            return {
+                ...state,
+                shownRecipes:[],
+                gotRecipes:[]
             }  
         default:
             return {

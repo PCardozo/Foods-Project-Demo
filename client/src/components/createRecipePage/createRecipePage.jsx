@@ -170,10 +170,10 @@ export default function CreateRecipePage(){
                 </div>
                 <div className={styles.txtValContainer} id="textValues" name="textValues">
                     <h3 className={styles.sctnTitle}>👨‍🍳Recipe Name:</h3>
-                    <input className={styles.name} type="text" id="recipeName" name="recipeName" onChange={(e)=>{validateName(e.target.value)}}/>
+                    <input className={styles.name} type="text" id="recipeName" name="recipeName" autoComplete="off" onChange={(e)=>{validateName(e.target.value)}}/>
                     <br></br>
                     <h3 className={styles.sctnTitle}>💪Healthyness value:</h3>
-                    <input className={styles.score} type="text" id="healthyness" name="healthyness" onChange={(e)=>{validateHealth(e.target.value)}}/>
+                    <input className={styles.score} type="text" id="healthyness" name="healthyness" autoComplete="off" onChange={(e)=>{validateHealth(e.target.value)}}/>
                     <br></br>
                     <h3 className={styles.sctnTitle}>📃Recipe summary:</h3>
                     <textarea className={styles.txtBox} id="summary" name="summary" rows="20" cols="33" onChange={(e)=>{validateSumm(e.target.value)}}/>

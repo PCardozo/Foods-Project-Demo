@@ -7,11 +7,13 @@ import styles from './recipeContainer.module.css';
 export default function RecipeContainer(){
     const shownRecipes = useSelector((state)=>state.shownRecipes);
     const pageIndex= useSelector((state)=>state.pageIndex);
+    const loading= useSelector((state)=>state.loading);
 
     return(
         <div>
             <div className={styles.container}>
-                {shownRecipes.length<1 && <p className={styles.noResults}>No results found.</p>}
+                {!loading && shownRecipes.length<1 && <p className={styles.noResults}>No results found.</p>}
+                {loading && <p className={styles.noResults}>Loading...</p>}
                 {shownRecipes.length>0 && shownRecipes[pageIndex].map((element)=>{
                     return <RecipeCard
                     id='recipeCard'
