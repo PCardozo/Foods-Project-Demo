@@ -43,12 +43,14 @@ export default function CreateRecipePage(){
             for (const element of diets) {
                 if (element.type==="checkbox" && element.checked) {
                     recProto.dietTypes.push(element.name)
+                    element.checked=false;
                 }
             }
             if(recProto.dietTypes.length<1)recProto.dietTypes.push('No diet types available');
             for (const element of dishes) {
                 if (element.type==="checkbox" && element.checked) {
                     recProto.dishTypes.push(element.name)
+                    element.checked=false;
                 }
             }
             if(recProto.dishTypes.length<1)recProto.dishTypes.push("No dish types available");
@@ -56,15 +58,15 @@ export default function CreateRecipePage(){
             textValues.healthyness.value='';
             textValues.summary.value='';
             textValues.stepByStep.value='';
-            //console.log(recProto)
             axios.post('http://localhost:3001/recipes',recProto)
-            .then((r)=>{console.log(r.data)})
+            .then((r)=>{alert(r.data)})
+            .catch(()=>{alert('an error occurred while creating the recipe')})
         }
     }
 
 
     function validateName(string){
-        if(string.length>40 || string.length<8){
+        if(string.length>40 || string.length<8 || /\d/.test(string)){
             setNameErr(true);
         }else{
             setNameErr(false);
@@ -181,7 +183,7 @@ export default function CreateRecipePage(){
                     <h3 className={styles.sctnTitle}>👓Instructions to cook this recipe:</h3>
                     <textarea className={styles.txtBox} id="stepByStep" name="stepByStep" rows="20" cols="33" onChange={(e)=>{validateSteps(e.target.value)}}/>
                     <input className={styles.submit} type="submit" value="✔Submit" disabled={errors}></input>
-                    {nameErr && <p className={styles.errMsg}>❌Recipe name must be between 8 and 40 characters long</p>}
+                    {nameErr && <p className={styles.errMsg}>❌Recipe name must be between 8 and 40 characters long. Must not contain numbers.</p>}
                     {healthErr && <p className={styles.errMsg}>❌Healthyness must be a numeric value between 0 and 100</p>}
                     {summErr && <p className={styles.errMsg}>❌Recipe summary must be between 8 and 300 characters long</p>}
                     {stepsErr && <p className={styles.errMsg}>❌Recipe instructions must be between 8 and 300 characters long</p>}
