@@ -61,12 +61,11 @@ let sequelize =
         },
         ssl: true,
       })
-    : new Sequelize(DB_NAME, DB_USER, DB_PASSWORD,{
-      host:'localhost',
-      dialect:'postgres',
-      logging:false,
-    });
-
+    : new Sequelize(
+      `postgres: //${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`,
+      { logging: false, native: false }
+    );
+//
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
