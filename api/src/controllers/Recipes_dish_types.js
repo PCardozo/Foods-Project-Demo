@@ -1,6 +1,6 @@
 const {Recipes_dish_types, Dish_type, Recipe} = require('../db');
 
-async function getDishTypeRelation(id){
+async function getDishTypeRelation(id){ //igual que buscar dietas. podria haber refactorizado pero no me avive
     const data = await Recipes_dish_types.findAll({
         attributes:['dishTypeId'],
         where:{
@@ -11,7 +11,7 @@ async function getDishTypeRelation(id){
     return value;
 }
 
-async function writeRecipesDishTypes(dataArray){
+async function writeRecipesDishTypes(dataArray){ //idem a crear relacion de tipos dieta (no refactoring here either)
     console.log('Writing recipes-dish-types...');
     let objArray=[];
     for (let i = 0; i < dataArray.length; i++) {
@@ -31,8 +31,8 @@ async function writeRecipesDishTypes(dataArray){
     .catch((e)=>{console.log('An error occurred while doing stuff',e)})
 }
 
-async function IdGetter(seqModel, nameValue){
-    const lecture = await seqModel.findOne({
+async function IdGetter(seqModel, nameValue){ //aca repeti la funcion que estaba en el controller de las dietas
+    const lecture = await seqModel.findOne({//no, no hablemos de refactorizar
             attributes:['id'],
             where:{
                 name:nameValue,

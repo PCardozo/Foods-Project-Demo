@@ -1,21 +1,21 @@
 const {Diet_type} = require('../db');
 
-async function getDietsForRecipe(arrId){
+async function getDietsForRecipe(arrId){ //recibo arreglo con id de dietas
     let result =[];
-    for (let i = 0; i < arrId.length; i++) {
-        const lecture = await Diet_type.findOne({
-            attributes:['name'],
+    for (let i = 0; i < arrId.length; i++) { //recorro arreglo
+        const lecture = await Diet_type.findOne({ //busco de a uno cada resultado
+            attributes:['name'],//me traigo solamente el name de la dieta
             where:{
                 id:arrId[i],
             }
         })
         result.push(lecture.dataValues.name);  
     }
-    return result;
+    return result;  //retorno arreglo con strings de nombre dieta
 }
 
 
-async function getDiets(){
+async function getDiets(){ //recupera registros de diets y los retorna en un arreglo (id incluido)  
     try{
         const val = await Diet_type.findAll();
         //console.log('valor de FindAll es:',val);
@@ -27,7 +27,7 @@ async function getDiets(){
     }
 }
 
-function writeDiets(){
+function writeDiets(){ //escribo los siguientes valores en la tabla
     let vars = [
         {name: "gluten free"},
         {name: "dairy free"},
