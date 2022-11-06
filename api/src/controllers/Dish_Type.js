@@ -1,6 +1,6 @@
 const {Dish_type} = require('../db');
 
-async function getDishTypesForRecipe(arrId){
+async function getDishTypesForRecipe(arrId){ //igual que con dietas. no refactoring 4 me i guess
     let result =[];
     for (let i = 0; i < arrId.length; i++) {
         const lecture = await Dish_type.findOne({
