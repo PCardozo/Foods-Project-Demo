@@ -20,7 +20,7 @@ conn.sync({ force: true }) // Syncing all the models at once.
 .then(async ()=>{return await propertyFetch(API_KEY)}) //pido info de nuevo para escribir relaciones porque originalmente no existen los datos en mi db y necesito los ids de los registros
 .then((r)=>{return Promise.all([writeRecipesDietTypes(r),writeRecipesDishTypes(r)])})//escribo las relaciones en tablas conjuntas
 .then(() => {
-  server.listen(3001, () => {
+  server.listen(5432, () => {
     console.log('server listening at 3001'); // eslint-disable-line no-console
   });
 });
