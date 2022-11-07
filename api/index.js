@@ -14,12 +14,12 @@ const {writeRecipesDishTypes} = require('./src/controllers/Recipes_dish_types.js
 
 //SERVER STARTUP//////////////////////////////////////////////////////////////////////
 
-conn.sync({ force: true }) // Syncing all the models at once.
-.then(async ()=>{ console.log('Fetching data...');return await apiFetch(API_KEY)})//pido info a la api externa
+conn.sync({ force: false }) // Syncing all the models at once.
+/*.then(async ()=>{ console.log('Fetching data...');return await apiFetch(API_KEY)})//pido info a la api externa
 .then((r)=>{return Promise.all([writeRecipes(r),writeDiets(),writeDishTypes()])}) //escribo en db en base a la info generada por mi fn
 .then(async ()=>{return await propertyFetch(API_KEY)}) //pido info de nuevo para escribir relaciones porque originalmente no existen los datos en mi db y necesito los ids de los registros
 .then((r)=>{return Promise.all([writeRecipesDietTypes(r),writeRecipesDishTypes(r)])})//escribo las relaciones en tablas conjuntas
-.then(() => {
+.then(() => {*/
   server.listen(5432, () => {
     console.log('server listening at 3001'); // eslint-disable-line no-console
   });
