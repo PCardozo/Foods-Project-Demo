@@ -8,7 +8,7 @@ const {writeDiets} = require('./src/controllers/Diets.js');
 const {writeRecipes} = require('./src/controllers/Recipes.js');
 const {writeDishTypes} = require('./src/controllers/Dish_Type.js');
 const {apiFetch,propertyFetch} = require('./src/controllers/apiFetch.js');
-const {writeRecipesDietTypes} = require('./src/controllers/Recipes_diet_types.js');
+const {writeRecipesDietTypes} = require('./src/controllers/Recipes_Diet_types.js');
 const {writeRecipesDishTypes} = require('./src/controllers/Recipes_dish_types.js');
 
 
