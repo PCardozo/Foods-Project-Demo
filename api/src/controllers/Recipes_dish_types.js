@@ -1,4 +1,4 @@
-const {Recipes_dish_types, Dish_type, Recipe} = require('../db');
+const {Recipes_dish_types, Dish_Type, Recipe} = require('../db');
 
 async function getDishTypeRelation(id){ //igual que buscar dietas. podria haber refactorizado pero no me avive
     const data = await Recipes_dish_types.findAll({
@@ -18,7 +18,7 @@ async function writeRecipesDishTypes(dataArray){ //idem a crear relacion de tipo
         //console.log('databulk:',dataArray[i].name)
         let recipeId = await IdGetter(Recipe, dataArray[i].name);
         for (let t = 0; t < dataArray[i].dishTypes.length; t++) {
-            let dishTypeId = await IdGetter(Dish_type, dataArray[i].dishTypes[t]);
+            let dishTypeId = await IdGetter(Dish_Type, dataArray[i].dishTypes[t]);
             objArray.push({
                 recipeId,
                 dishTypeId,
