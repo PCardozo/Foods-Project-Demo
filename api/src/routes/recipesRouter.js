@@ -4,7 +4,7 @@ const {getOneRecipe,getManyRecipes,writeNewRecipe} = require('../controllers/Rec
 const {getDietRelation,writeRecipesDietTypes} = require('../controllers/Recipes_Diet_types');
 const {getDietsForRecipe} = require('../controllers/Diets');
 const {getDishTypeRelation,writeRecipesDishTypes} = require('../controllers/Recipes_dish_types');
-const {getDishTypesForRecipe} = require('../controllers/Dish_type');
+const {getDishTypesForRecipe} = require('../controllers/Dish_Type');
 const router = Router();
 router.use(express.json());
 

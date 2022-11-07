@@ -1,9 +1,9 @@
-const {Dish_type} = require('../db');
+const {Dish_Type} = require('../db');
 
 async function getDishTypesForRecipe(arrId){ //igual que con dietas. no refactoring 4 me i guess
     let result =[];
     for (let i = 0; i < arrId.length; i++) {
-        const lecture = await Dish_type.findOne({
+        const lecture = await Dish_Type.findOne({
             attributes:['name'],
             where:{
                 id:arrId[i],
@@ -34,7 +34,7 @@ function writeDishTypes(){
         {name: "No dish types available"}
     ];
     console.log('Writing dish types into database...')
-    return Dish_type.bulkCreate(vars)
+    return Dish_Type.bulkCreate(vars)
     .then(()=>{console.log('Dish types written into database.')})
     .catch((e)=>{console.log('An error occurred while writing dish types:',e)})
 }
